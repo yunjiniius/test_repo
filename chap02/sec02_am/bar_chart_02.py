@@ -1,0 +1,22 @@
+import pandas as pd
+import plotly.express as px
+import streamlit as st
+
+# 가상 데이터프레임 생성
+data = {
+    '과제명': ['A과제', 'A과제', 'A과제', 'B과제', 'B과제', 'B과제', 'C과제', 'C과제', 'C과제'],
+    '종류': ['예정일', '실제', '실제', '예정일', '실제', '실제', '예정일', '실제', '실제'],
+    '일수': [10, 12, 12, 15, 15, 15, 20, 18, 18]
+}
+
+df = pd.DataFrame(data)
+
+# Streamlit 앱 설정
+st.title('과제 완료율 비교')
+st.dataframe(df)
+
+# 막대 그래프 생성
+fig = px.bar(df, x='과제명', y='일수', color='종류', barmode='group', title='과제별 완료예정일과 실제완료일 비교')
+
+# 차트 출력
+st.plotly_chart(fig)
